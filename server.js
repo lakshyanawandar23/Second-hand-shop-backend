@@ -11,8 +11,12 @@ dotenv.config()
 connectDB()
 
 const app = express()
+app.use(cors({
+  origin: 'https://second-hand-shop-tau.vercel.app', // Replace with your frontend's URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
+ // credentials: true // Enable if you need to send cookies or HTTP authentication
+}));
 app.use(express.json())
-app.use(cors());
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/uploads', uploadRoutes)
